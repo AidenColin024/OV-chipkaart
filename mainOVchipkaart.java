@@ -2,11 +2,11 @@ package inhoud;
 
 public class mainOVchipkaart {
     public static void main(String[] args) {
-        OVchipkaart mijnKaart = new OVchipkaart("1234567890", 10.00); // Een nieuwe OVChipkaart met saldo
-        OVpaal paal = new OVpaal(); // Nieuwe OVpaal om in te checken
+        OVchipkaart kaart = new OVchipkaart("123456", 10.00);
+        OVpaal paal = new OVpaal("Station Amsterdam");
 
-        // Inchecken en uitchecken
-        paal.checkIn(mijnKaart);  
-        paal.checkOut(mijnKaart);
+        paal.verwerkCheckIn(kaart);     // Inchecken
+        paal.verwerkCheckOut(kaart);    // Uitchecken
+
     }
 }

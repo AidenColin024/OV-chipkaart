@@ -1,10 +1,12 @@
 package inhoud;
 
-public class OVchipkaart extends mainOVchipkaart
-{
+public class OVchipkaart {
     private String kaartNummer;
     private double saldo;
     private boolean ingecheckt;
+
+    private static final double MINIMUM_SALDO = 2.00;
+    private static final double BASIS_TARIEF = 3.50;
 
     public OVchipkaart(String kaartNummer, double saldo) {
         this.kaartNummer = kaartNummer;
@@ -12,30 +14,43 @@ public class OVchipkaart extends mainOVchipkaart
         this.ingecheckt = false;
     }
 
-    public boolean isIngecheckt() {
-        return ingecheckt;
+    public boolean checkIn() {
+        if (ingecheckt) {
+            System.out.println("Kaart is al ingecheckt!");
+            return false;
+        }
+        if (saldo < MINIMUM_SALDO) {
+            System.out.println("Niet genoeg saldo om in te checken.");
+            return false;
+        }
+        this.ingecheckt = true;
+        System.out.println("Succesvol ingecheckt!");
+        return true;
+    }
+
+    public boolean checkOut() {
+        if (!ingecheckt) {
+            System.out.println("Kaart is niet ingecheckt!");
+            return false;
+        }
+        if (saldo < BASIS_TARIEF) {
+            System.out.println("Niet genoeg saldo om uit te checken.");
+            return false;
+        }
+        saldo -= BASIS_TARIEF;
+        ingecheckt = false;
+        System.out.println("Succesvol uitgecheckt! Nieuw saldo: " + saldo);
+        return true;
     }
 
     public double getSaldo() {
         return saldo;
     }
 
-    public void inchecken() {
-        this.ingecheckt = true;
+    public boolean isIngecheckt() {
+        return ingecheckt;
     }
-    public void uitchecken(double ritKosten) {
-        if (!ingecheckt) {
-            System.out.println("Kaart is niet ingecheckt!");
-            return;
-        }
-        if (saldo < ritKosten) {
-            System.out.println("Niet genoeg saldo om uit te checken.");
-            return;
-        }
-        saldo -= ritKosten;
-        ingecheckt = false;
-        System.out.println("Succesvol uitgecheckt! Nieuw saldo: " + saldo);
-    }
+
 }
 
 

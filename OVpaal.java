@@ -1,16 +1,20 @@
 package inhoud;
 
-public class OVpaal extends Inchecken
-{
-    private Inchecken inchecken = new Inchecken();
-    private Uitchecken uitchecken = new Uitchecken();
-
-    public boolean checkIn(OVchipkaart kaart) {
-        return inchecken.checkIn(kaart);
-    }
+public class OVpaal{
+    private String station;
     
-    public boolean checkOut(OVchipkaart kaart) {
-        return uitchecken.checkOut(kaart);
+    public OVpaal(String station) {
+        this.station = station;
+    }
+
+    public void verwerkCheckIn(OVchipkaart kaart) {
+        System.out.println("Inchecken bij: " + station);
+        kaart.checkIn();
+    }
+
+    public void verwerkCheckOut(OVchipkaart kaart) {
+        System.out.println("Uitchecken bij: " + station);
+        kaart.checkOut();
     }
 }
 
