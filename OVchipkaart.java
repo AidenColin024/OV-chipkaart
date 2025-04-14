@@ -50,6 +50,14 @@ public class OVchipkaart {
     public boolean isIngecheckt() {
         return ingecheckt;
     }
+    public void verhoogSaldo(double bedrag) {
+	    if (bedrag > 0) {
+	        saldo += bedrag;
+	        System.out.println("Saldo verhoogd met " + bedrag + ". Nieuw saldo: " + saldo);
+	    } else {
+	        System.out.println("Ongeldig bedrag.");
+	    }
+	}
 
 }
 
